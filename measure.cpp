@@ -122,11 +122,18 @@ for(int x=0; x<20; x++){
 
 }
 
+std::ofstream myfile;
+myfile.open ("histogram-raw.txt");
+for(int i=0; i<no_of_accesses; i++){
+    myfile << histogram[i].start_cc << " " << histogram[i].latency << "\n";
+}
+
+myfile.close();
+
 histogram_vals* new_histogram;
 new_histogram = (histogram_vals*)malloc(sizeof(histogram_vals)*no_of_accesses);
 clear_histogram(histogram, new_histogram);
 
-std::ofstream myfile;
 myfile.open ("histogram.txt");
 for(int i=0; i<no_of_accesses; i++){
     myfile << new_histogram[i].start_cc << " " << new_histogram[i].latency << "\n";
